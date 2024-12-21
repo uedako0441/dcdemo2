@@ -1,0 +1,59 @@
+/* メニューバーのスタイル */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px; /* メニューバーの幅 */
+    height: 100%;
+    background-color: #9caeb7;
+    padding-top: 20px; /* 上部の余白 */
+    z-index: 1000;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-item {
+    margin: 20px 0;
+  }
+  
+  .navbar-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    display: block;
+  }
+  
+  .navbar-link:hover {
+    background-color: #9b7cb6;
+    border-radius: 5px;
+  }
+  
+  /* メインコンテンツのスタイル */
+  .main {
+    margin-left: 220px; /* メニューバーの幅分だけ左に余白を作成 */
+    padding: 20px;
+  }
+  
+  .content {
+    z-index: 2;
+  }
+  
+  .center-text {
+    font-size: 2.5rem;
+    color: white;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+  }
+  
+  /* ボタンのスタイル */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }

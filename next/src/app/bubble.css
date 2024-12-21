@@ -1,111 +1,153 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #6da3ff, #dfd0ff);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #adffff, #7fffff);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.center-text {
+  font-size: 2.5rem; /* デフォルトの文字サイズ */
+  color: #9999ff;
+  text-align: center;
+  z-index: 3; /* テキストを一番前に */
+  position: absolute;
+  top: 20px; /* h1を上部に配置 */
+  left: 50%;
+  transform: translateX(-50%); /* 横中央に配置 */
+}
+
+/* 泡を包むラッパ */
+.soap_wrap {
+  position: relative;
+  height: 260px; /*お好みで*/
+  width: 100%;
+}
+
+.soap {
+  position: absolute;
+  width: 200px; /*お好みで*/
+  height: 200px; /*お好みで*/
+  border-radius: 50% 46% 48% 44%;
+  overflow: hidden;
+  background: radial-gradient(at 47% 53%, transparent 50%, rgba(2, 172, 253, 0.27) 70%, transparent 100%) 50% 50% no-repeat;
+  animation: soap 10s ease-in-out infinite, moveBubble 6s infinite linear;
+  z-index: 1;
+  animation-delay: 0s; /* アニメーションの遅延を個別に設定 */
+  font-size: 2rem;
+  color: #9e9eff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: lighter;
+}
+
+.soap:hover{
+  transform: scale(1.2);
+}
+
+/* 泡1、2、3の個別な位置を設定 */
+.soap:nth-child(1) {
+  bottom: 10%; /* 右下 */
+  left: 5%;
+  animation-delay: 1s; /* 泡1のアニメーション遅延 */
+}
+
+.soap:nth-child(2) {
+  bottom: 10%; /* 左下 */
+  right: 5%;
+  animation-delay: 2s; /* 泡2のアニメーション遅延 */
+}
+
+.soap:nth-child(3) {
+  top: 50%; /* 画面中央 */
+  left: 40%;
+  transform: translateX(-50%); /* 横中央 */
+  animation-delay: 7s; /* 泡3のアニメーション遅延 */
+}
+
+.soap::before {
+  content: "";
+  position: absolute;
+  right: -10%;
+  bottom: -10%;
+  width: 60%;
+  height: 60%;
+  border-radius: 60% 0;
+  background: radial-gradient(at 0 0, rgba(0, 130, 255, 0.2) 40%, rgba(255, 154, 204, 0.2) 50%);
+  transform-origin: 0 0;
+  animation: soap_rotate 15s ease-in-out infinite;
+  filter: blur(15px);
+}
+
+.soap::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  top: -10%;
+  width: 60%;
+  height: 60%;
+  border-radius: 20% 0;
+  background: radial-gradient(at 100% 100%, rgba(255, 255, 100, 0.2) 40%, rgba(120, 255, 140, 0.2) 60%);
+  transform-origin: 100% 100%;
+  animation: soap_rotate 6s ease-in-out infinite;
+  filter: blur(15px);
+}
+
+@keyframes soap_rotate {
+  0% { transform: rotate(0); }
+  50% { transform: rotate(160deg); }
+}
+
+@keyframes soap {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(30px); }
+}
+
+@keyframes moveBubble {
+  0% {
+    transform: translate(0, 0);
   }
-  
-  .main {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  25% {
+    transform: translate(10px, -10px);
   }
-  
-  .center-text {
-    font-size: 2.5rem; /* デフォルトの文字サイズ */
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
+  50% {
+    transform: translate(-10px, 15px);
   }
-  
-  /* ボタンの基本スタイル */
-  .bubble {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 50%;
-    background: white;
-    color: #4a4a4a;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 120px; /* デフォルトの幅 */
-    height: 120px; /* デフォルトの高さ */
-    font-size: 1rem; /* デフォルトのフォントサイズ */
+  75% {
+    transform: translate(15px, -30px);
   }
-  
-  /* ホバースタイル */
-  .bubble:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+  100% {
+    transform: translate(0, 0);
   }
-  
-  /* ランダムな位置 */
-  .bubble:nth-child(1) {
-    top: 35%;
-    left: 45%;
-  }
-  
-  .bubble:nth-child(2) {
-    top: 20%;
-    left: 30%;
-  }
-  
-  .bubble:nth-child(3) {
-    top: 40%;
-    left: 15%;
-  }
-  
-  .bubble:nth-child(4) {
-    top: 20%;
-    left: 60%;
-  }
-  
-  .bubble:nth-child(5) {
-    top: 40%;
-    left: 75%;
-  }
-  
-  /* 画面サイズに応じた調整 */
-  @media (min-width: 1200px) {
-    .center-text {
-      font-size: 3.5rem; /* 大きな画面では文字サイズを大きく */
-    }
-  
-    .bubble {
-      width: 150px; /* ボタンを大きく */
-      height: 150px;
-      font-size: 1.2rem; /* フォントサイズを大きく */
-    }
-  }
-  
-  @media (max-width: 800px) {
-    .center-text {
-      font-size: 2rem; /* 中型画面では少し小さめ */
-    }
-  
-    .bubble {
-      width: 100px; /* ボタンを小さく */
-      height: 100px;
-      font-size: 0.9rem; /* フォントサイズも小さめ */
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .center-text {
-      font-size: 1.8rem; /* 小さな画面ではさらに小さめ */
-    }
-  
-    .bubble {
-      width: 80px; /* ボタンをもっと小さく */
-      height: 80px;
-      font-size: 0.8rem; /* フォントサイズも縮小 */
-    }
-  }
+}
+
+.soap:nth-child(1) {
+  animation: moveBubble 6s infinite ease-in-out;
+}
+
+.soap:nth-child(2) {
+  animation: moveBubble 7s infinite ease-in-out;
+}
+
+.soap:nth-child(3) {
+  animation: moveBubble 8s infinite ease-in-out;
+}
+
+.position {
+  text-align: center;
+}
+
+
