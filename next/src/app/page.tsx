@@ -29,7 +29,7 @@ export default function HomePage() {
             <Link href="/map" className="soap">駅構内地図</Link>
           </p>
           <Link href="/navi" className="soap">乗換案内</Link>
-          <Link href="/book" className="soap">予約履歴</Link>
+          <Link href="/chat" className="soap">チャット（仮）</Link>
         </div>
       </div>
     </main>
